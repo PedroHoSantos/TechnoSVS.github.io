@@ -11,6 +11,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="css/style.css">
+  <link rel="shortcut icon"  href="img/favicon.ico">
 </head>
 
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
@@ -83,29 +84,27 @@
 
 
     <!-- Container (Contact Section) -->
-    <div id="contact" class="container-fluid bg-grey">
-      <h2 class="text-center">CONTATE-NOS</h2>
+    <div id="contact" class="container-fluid" style="background-color: #79927e">
+      <h2 class="text-center" style="color:#fff">CONTATE-NOS</h2>
       <div class="row">
         <div class="col-sm-5">
-          <p>Entre em contato conosco!</p>
-          <p><span class="glyphicon glyphicon-envelope"></span> technosvs2023@gmail.com</p>
+          <p style="color: #fff">Entre em contato conosco!</p>
+          <p style="color: #fff"><span class="glyphicon glyphicon-envelope"></span> technosvs2023@gmail.com</p>
         </div>
         <div class="col-sm-7 slideanim">
-          <form name="contato" action="https://formsubmit.co/technosvs2023@gmail.com" method="POST">
-            <input type="hidden" name="_next" value="https://localhost/TechnoSVS">
-            <input type="hidden" name="_captcha" value="false">
+          <form method="POST" action="index.php">
             <div class="row">
               <div class="col-sm-6 form-group">
-                <input class="form-control" id="Nome" name="Nome" placeholder="Nome" type="text" required>
+                <input class="form-control" id="nome" name="nome" placeholder="Nome" type="text" required>
               </div>
               <div class="col-sm-6 form-group">
-                <input class="form-control" id="Email" name="Email" placeholder="E-mail" type="email" required>
+                <input class="form-control" id="email" name="email" placeholder="E-mail" type="email" required>
               </div>
             </div>
-            <textarea class="form-control" id="Mensagem" name="Mensagem" placeholder="Mensagem" rows="5"></textarea><br>
+            <textarea class="form-control" id="mensagem" name="mensagem" placeholder="Mensagem" rows="5"></textarea><br>
             <div class="row">
               <div class="col-sm-12 form-group">
-                <button class="btn btn-default pull-right" type="submit">Enviar</button>
+                <button class="btn btn-default pull-right" type="submit" name="submit">Enviar</button>
               </div>
             </div>
           </form>
@@ -115,11 +114,9 @@
 
     <!-- Image of location/map -->
 
-    <footer class="container-fluid text-center">
       <a href="#myPage" title="Para o topo">
         <span class="glyphicon glyphicon-chevron-up"></span>
       </a>
-    </footer>
 
     <script>
       $(document).ready(function() {
@@ -161,3 +158,15 @@
 </body>
 
 </html>
+
+<?php
+
+    include_once('config.php');
+
+    $nome = $_POST['nome'];
+    $email = $_POST['email'];
+    $mensagem = $_POST['mensagem'];
+
+    $result = mysqli_query($conexao, "INSERT INTO contato(nome, email, comentario) VALUES ('$nome', '$email', '$mensagem')");
+
+?>
